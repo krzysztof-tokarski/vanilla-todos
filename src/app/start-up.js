@@ -14,8 +14,6 @@ export function startUp () {
     prepareNecessaryElements() 
 }
 
-
-
 export function getProjectsFromStorage() {
     let values = [],
     keys = Object.keys(localStorage),
@@ -34,7 +32,6 @@ export function appendNoTodosMessage() {
 
 
 
-
 export function createMainContent(projectsFromStorage) {
     createListHeader();
     createProjectsList(projectsFromStorage);
@@ -45,14 +42,17 @@ export function createListHeader() {
     headerParagraph.classList.add('projects-list-header')      
     main.appendChild(headerParagraph);
 }
-export function createProjectsList(projectsFromStorage) {        
+export function createProjectsList(projectsFromStorage) {       
     const ol = document.createElement('ol');
     ol.classList.add('projects-list')
     projectsFromStorage.forEach(project => {
         // TODO
-        const newProject = document.createElement('li');
-        newProject.classList.add('projects-list-item')
-        ol.appendChild(newProject);
+        const projectFromStorage = JSON.parse(project);
+        console.log(projectFromStorage)
+        const projectListItem = document.createElement('li');
+        projectListItem.textContent = project.title;
+        projectListItem.classList.add('projects-list-item')
+        ol.appendChild(projectListItem);
     });
 
     const listContainer = document.createElement('div');

@@ -10,7 +10,7 @@ export function createNewProject() {
 
   const newProject = new ProjectClass(newProjectTitle, newProjectDescription,newProjectDueDate, newProjectPriority);
 
-  localStorage.setItem(newProjectTitle, newProject);
+  localStorage.setItem(newProjectTitle, JSON.stringify(newProject));
 
   const fluidContainer = document.querySelector('.fluid-container');
   fluidContainer.innerHTML = '';
