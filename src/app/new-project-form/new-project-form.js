@@ -1,8 +1,14 @@
 import { createNewProject } from "./create-new-project";
 
 export function createProjectForm() {
-    const fluidContainer = document.querySelector('.fluid-container');
 
+    const existingForm = document.querySelector('.form');
+
+    if (existingForm) {
+        existingForm.remove();
+    }
+
+    const fluidContainer = document.querySelector('.fluid-container');
     if (fluidContainer != undefined) {
         fluidContainer.innerHTML = '';
     }
@@ -35,13 +41,16 @@ export function createProjectForm() {
         form.appendChild(input.input);
     });
 
+    const buttonsContainer = document.createElement('div');
+    buttonsContainer.classList.add('form-buttons-container');
+
     const submitButton = document.createElement('button');
     submitButton.classList.add('form-button');
     submitButton.textContent = "Confirm";
     submitButton.setAttribute('type', 'button');
     submitButton.addEventListener('click',createNewProject);
-    form.appendChild(submitButton);
+    buttonsContainer.appendChild(submitButton);
+    form.appendChild(buttonsContainer);
     fluidContainer.appendChild(form);
-
 }
 

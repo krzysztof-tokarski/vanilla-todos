@@ -3,6 +3,7 @@
    License: none (public domain)
 */
 
+
 :root {
     --body-bgc: rgba(218, 15, 15, 0.699);
     --main-color:  rgba(146, 36, 36, 0.699);
@@ -93,7 +94,7 @@ main {
 p {
     width: 100%;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.5em;
     color: white;
 }
 
@@ -104,6 +105,7 @@ p {
     outline: none;
     color: white;
     background-color: rgb(143, 15, 41);
+    font-weight: bold;
 }
 
 .fluid-container {
@@ -125,6 +127,10 @@ p {
     gap: 15px;
     border: 5px solid white;
     border-radius: 5px;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+    transition: 0.3s;
 }
 
 label {
@@ -135,12 +141,12 @@ label {
 
 .form-button {
     width: 100px;
-    padding: 10px;
+    padding: 5px;
     font-size: 15px;
 }
 
 .form-input {
-    height: 40px;
+    height: 30px;
     padding: 10px;
     font-size: 16px;
     width: 90%;
@@ -148,5 +154,47 @@ label {
 
 
 textarea.form-input  {
-    height: 80px;
+    height: 70px;
+}
+
+.projects-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    gap: 20px;
+    padding: 10px;
+    border: 5px solid white;
+    align-items: center;
+    background-color: rgb(172, 22, 52);
+    border-radius: 15px;
+    color: white;
+}
+
+.projects-list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.projects-list-item {
+    padding: 5px;
+    color: white;
+    background-color: rgb(126, 11, 34);
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform:uppercase;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(90%);
+}
+
+.form-buttons-container {
+    display: flex;
+    gap: 10px;
 }

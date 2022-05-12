@@ -1,7 +1,7 @@
 // CORE;
 export const main = document.querySelector('main');
-import { ProjectClass } from "./models/models-module";
-import {createProjectForm} from './new-project-form/new-project-form'
+import {createProjectForm} from './new-project-form/new-project-form';
+import { createProjectEditionWindow } from './project-edition-window/project-edition-window';
 
 export function startUp () {
     const projectsFromStorage = getProjectsFromStorage();
@@ -30,36 +30,37 @@ export function appendNoTodosMessage() {
     main.appendChild(p);
 }
 
-
-
 export function createMainContent(projectsFromStorage) {
-    createListHeader();
     createProjectsList(projectsFromStorage);
 }
 export function createListHeader() {
     const headerParagraph = document.createElement('p');
     headerParagraph.textContent = "YOUR PROJECTS";
-    headerParagraph.classList.add('projects-list-header')      
-    main.appendChild(headerParagraph);
+    headerParagraph.classList.add('projects-list-header');
+    const listContainer = document.querySelector('.projects-list-container')     
+    listContainer.appendChild(headerParagraph);
 }
-export function createProjectsList(projectsFromStorage) {       
+
+export function createProjectsList(projectsFromStorage) {
+    const listContainer = document.createElement('div');
+    listContainer.classList.add('projects-list-container');
+    main.appendChild(listContainer);
+    createListHeader();
+
     const ol = document.createElement('ol');
     ol.classList.add('projects-list')
     projectsFromStorage.forEach(project => {
-        // TODO
         const projectFromStorage = JSON.parse(project);
-        console.log(projectFromStorage)
-        const projectListItem = document.createElement('li');
-        projectListItem.textContent = project.title;
-        projectListItem.classList.add('projects-list-item')
+        const projectListItem = document.createElement('button');
+        projectListItem.textContent = projectFromStorage.title;
+        projectListItem.classList.add('projects-list-item');
+        projectListItem.addEventListener('click', () => createProjectEditionWindow(projectFromStorage));
         ol.appendChild(projectListItem);
     });
 
-    const listContainer = document.createElement('div');
     listContainer.appendChild(ol);
-    listContainer.classList.add('project-list-container')
-    main.appendChild(listContainer);
 }
+
 
 
 
@@ -73,7 +74,7 @@ export function createButtonsContainer() {
     const addProjectButton = document.createElement('button');
     addProjectButton.textContent = "ADD PROJECT";
     addProjectButton.classList.add('main-button');
-    addProjectButton.addEventListener("click",createProjectForm)
+    addProjectButton.addEventListener("click",createProjectForm);
     buttonsContainer.appendChild(addProjectButton);
     main.appendChild(buttonsContainer);
 }
