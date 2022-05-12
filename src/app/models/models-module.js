@@ -1,4 +1,4 @@
-export class ToDo {
+export class ToDoClass {
     constructor(title, description, dueDate, priority) {
     this.title = title;
     this.description = description;
@@ -7,7 +7,7 @@ export class ToDo {
     }
 }
 
-export class Project {
+export class ProjectClass {
     constructor(title, description, dueDate, priority) {
     this.title = title;
     this.description = description;

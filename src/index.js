@@ -1,3 +1,3 @@
-import { startUp } from "./shared/main-page";
+import { startUp } from "./app/start-up";
 
 startUp();
