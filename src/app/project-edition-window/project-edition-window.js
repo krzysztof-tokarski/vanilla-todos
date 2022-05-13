@@ -28,7 +28,7 @@ export function createProjectEditionWindow(project){
   updateButton.classList.add('form-button');
   updateButton.textContent = 'Confirm changes';
   updateButton.addEventListener('click', () => updateProject(project));
-  const buttonsContainer = document.querySelector('.form-buttons-container');
+  const buttonsContainer = document.querySelector('.form-gbuttons-container');
   buttonsContainer.appendChild(updateButton);
 
   const deleteButton =  document.createElement('button');
