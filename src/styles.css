@@ -3,7 +3,6 @@
    License: none (public domain)
 */
 
-
 :root {
     --body-bgc: rgba(218, 15, 15, 0.699);
     --main-color:  rgba(146, 36, 36, 0.699);
@@ -38,7 +37,8 @@ body {
     line-height: 1;
 }
 ol, ul {
-    list-style: none;
+    color: white;
+    font-weight: bold;
 }
 blockquote, q {
     quotes: none;
@@ -75,28 +75,33 @@ header {
     padding: 20px;
     font-size: 3em;
     color: white;
-    background-color: var(--main-color);
     border-bottom: 5px solid white;
 }
 
 main {
     padding: 20px;
-    background-color: var(--main-color);
     width: 100%;
     flex: 1;
-    height: 100px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    min-width: fit-content;
 }
 
-p {
+h2,h3 {
     width: 100%;
     text-align: center;
     font-size: 1.5em;
     color: white;
 }
+
+p {
+    color: white;
+
+}
+
 
 .main-button {
     padding: 10px;
@@ -112,7 +117,7 @@ p {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; 
 }
 
 .form {
@@ -131,6 +136,7 @@ p {
     -moz-box-shadow: 0 10px 6px -6px #777;
     box-shadow: 0 10px 6px -6px #777;
     transition: 0.3s;
+    min-width: fit-content;
 }
 
 label {
@@ -168,6 +174,7 @@ textarea.form-input  {
     background-color: rgb(172, 22, 52);
     border-radius: 15px;
     color: white;
+    min-width: fit-content;
 }
 
 .projects-list {
@@ -198,3 +205,29 @@ button:hover {
     display: flex;
     gap: 10px;
 }
+
+.form-button {
+    border-radius: 5px;
+    background-color: crimson;
+    color: white;
+}
+
+ol {
+    flex: 1;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+li {
+    flex: 1;
+    width: 100%;
+    align-self: center;
+}
+
+li > .form-input {
+    width: 100%;
+}
+

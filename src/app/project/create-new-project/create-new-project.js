@@ -1,4 +1,4 @@
-import { ProjectClass } from "../models/models-module";
+import { ProjectClass } from "../../models/models-module";
 
 export function createNewProject(project) {
 
@@ -19,7 +19,4 @@ export function createNewProject(project) {
     const fluidContainer = document.querySelector('.fluid-container');
     fluidContainer.innerHTML = '';
     window.location.reload();
-
-
-
 }

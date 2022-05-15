@@ -1,9 +1,6 @@
 export class ToDoClass {
-    constructor(title, description, dueDate, priority) {
-    this.title = title;
-    this.description = description;
-    this.dueDate = dueDate;
-    this.priority = priority;
+    constructor(content) {
+    this.content = content;
     }
 }
 
@@ -14,10 +11,6 @@ export class ProjectClass {
     this.dueDate = dueDate;
     this.priority = priority;
     this.todos = [];
-    }
-
-    addTodo = function (ToDo) {
-        this.todos.push(ToDo)
     }
 }
 
