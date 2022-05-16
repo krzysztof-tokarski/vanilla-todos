@@ -1,8 +1,7 @@
 import { createNewForm } from "../shared/create-new-form";
+import { openEditToDoWindow } from "./edit-todo";
 
 export function openManageTodosWindow(project) {
-
-  const pseudoEnum = `Manage ToDos for ${project.title}`;
 
   const existingForm = document.querySelector('.form');
 
@@ -21,7 +20,7 @@ export function openManageTodosWindow(project) {
   form.classList.add('form');
   const h3 = document.createElement('h3');
   h3.classList.add('form-header');
-  h3.textContent = `Manage ToDos for ${project.title}`;
+  h3.textContent = `MANAGE TODOS FOR ${project.title.toUpperCase()}`;
   form.appendChild(h3);
 
 
@@ -31,21 +30,24 @@ export function openManageTodosWindow(project) {
     p.classList.add('no-todos');
     form.appendChild(p);
   } else {
-    const ol = document.createElement('ol');
+    const todosContainer = document.createElement('div');
+    todosContainer.classList.add('todos-container')
     project.todos.forEach(todo => {
-      const input = document.createElement('input');
-      input.value = todo.content;
-      input.classList.add('form-input');
-      const li = document.createElement('li');
-      li.appendChild(input)
-      ol.appendChild(li);
+      const button = document.createElement('button');
+      button.textContent = todo.title;
+      if (todo.finished) {
+        button.style.backgroundColor = "green";
+      }
+      button.setAttribute('type', 'button')
+      button.addEventListener('click', () => openEditToDoWindow(todo, project))
+      todosContainer.appendChild(button);
     });
-    form.appendChild(ol);
+    form.appendChild(todosContainer);
   }
   const createToDoButton = document.createElement('button');
   createToDoButton.classList.add('form-button');
   createToDoButton.textContent = 'Add ToDo';
-  createToDoButton.addEventListener('click', () => createNewForm("ADD NEW TODO"));
+  createToDoButton.addEventListener('click', () => createNewForm("ADD NEW TODO", project));
   createToDoButton.setAttribute('type','button');
   form.appendChild(createToDoButton);
 

@@ -231,3 +231,12 @@ li > .form-input {
     width: 100%;
 }
 
+.todos-container {
+    display: flex;
+    gap: 10px;
+}
+
+.todos-container > button {
+    background-color: black;
+    color: white;
+}

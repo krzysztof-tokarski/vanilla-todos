@@ -2,8 +2,10 @@ import {createNewProject} from '../project/create-new-project/create-new-project
 import {deleteProject} from '../project/project-edition-window/delete-project';
 import {updateProject} from '../project/project-edition-window/update-project';
 import {openManageTodosWindow} from '../todo/manage-todos';
+import { createToDo } from '../todo/create-to-do';
+import { deleteToDo } from '../todo/delete-to-do';
 
-export function createNewForm(pseudoEnum, project) {
+export function createNewForm(pseudoEnum, project, todo) {
     
     const existingForm = document.querySelector('.form');
 
@@ -53,35 +55,19 @@ export function createNewForm(pseudoEnum, project) {
 
     fluidContainer.appendChild(form);
 
+
     if (pseudoEnum == "NEW PROJECT FORM") {
         primaryButton.addEventListener('click',() => createNewProject());
         buttonsContainer.appendChild(primaryButton);
     } else if (pseudoEnum == "ADD NEW TODO") {
+        h3.textContent = h3.textContent + ` TO ${project.title.toUpperCase()}`;
         primaryButton.addEventListener('click',() => createToDo(project));
         buttonsContainer.appendChild(primaryButton);
     } else {
         const split = pseudoEnum.split(' ');
-        if (split[0] == "Editing") {
-            primaryButton.addEventListener('click',() => updateProject(project));
-            buttonsContainer.appendChild(primaryButton);
-            const deleteButton =  document.createElement('button');
-            deleteButton.textContent = 'Delete project';
-            deleteButton.classList.add('form-button');
-            deleteButton.addEventListener('click',() => deleteProject(project.title));
-            deleteButton.setAttribute('type', 'button');
-            buttonsContainer.appendChild(deleteButton);
-    
-            const manageTodosButton = document.createElement('button');
-            manageTodosButton.textContent = "Manage Project's ToDos";
-            manageTodosButton.classList.add('form-button');
-            manageTodosButton.addEventListener('click', () => openManageTodosWindow(project));
-            manageTodosButton.setAttribute('type', 'button');
-            buttonsContainer.appendChild(manageTodosButton);
+        if (split[0] == "EDITING") {
 
             const formInputs = document.getElementsByClassName('form-input');
-
-            console.log(formInputs);
-            
             const titleInput = formInputs[0];
             const descriptionInput = formInputs[1];
             const dueDateInput = formInputs[2];
@@ -91,10 +77,34 @@ export function createNewForm(pseudoEnum, project) {
             descriptionInput.value = project.description;
             dueDateInput.value = project.dueDate;
             priorityInput.value = project.priority;
+
+            const deleteButton =  document.createElement('button');
+            deleteButton.classList.add('form-button');
+            deleteButton.setAttribute('type', 'button');
+
+            const manageTodosButton = document.createElement('button');
+            manageTodosButton.classList.add('form-button');
+            manageTodosButton.setAttribute('type', 'button');
+
+            buttonsContainer.appendChild(primaryButton);
+            buttonsContainer.appendChild(deleteButton);
+            buttonsContainer.appendChild(manageTodosButton);
+
+            if (split[1] == "PROJECT") {
+                primaryButton.addEventListener('click',() => updateProject(project));
+                deleteButton.textContent = 'Delete project';
+                deleteButton.addEventListener('click',() => deleteProject(project.title));
+                manageTodosButton.textContent = "Manage Project's ToDos";
+                manageTodosButton.addEventListener('click', () => openManageTodosWindow(project));
+            } else if (split[1] == "TODO") {
+                primaryButton.addEventListener('click',() => updateToDo(todo, project));
+                deleteButton.textContent = 'Delete ToDo';
+                deleteButton.addEventListener('click',() => deleteToDo(project, todo));
+                manageTodosButton.textContent = "Change status";
+                manageTodosButton.addEventListener('click', () => changeToDoStatus(todo, project));
         }
     }
-
+    }
     form.appendChild(buttonsContainer);
 
 }
-
