@@ -5,6 +5,7 @@ import {openManageTodosWindow} from '../todo/manage-todos';
 import { createToDo } from '../todo/create-to-do';
 import { deleteToDo } from '../todo/delete-to-do';
 import {changeToDoStatus} from '../todo/change-to-do-status';
+import { updateToDo } from '../todo/update-to-do';
 
 export function createNewForm(pseudoEnum, project, todo) {
     
@@ -13,7 +14,6 @@ export function createNewForm(pseudoEnum, project, todo) {
     if (existingForm) {
         existingForm.remove();
     }
-
     const fluidContainer = document.querySelector('.fluid-container');
     if (fluidContainer != undefined) {
         fluidContainer.innerHTML = '';
