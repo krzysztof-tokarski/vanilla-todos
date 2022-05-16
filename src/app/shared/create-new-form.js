@@ -4,6 +4,7 @@ import {updateProject} from '../project/project-edition-window/update-project';
 import {openManageTodosWindow} from '../todo/manage-todos';
 import { createToDo } from '../todo/create-to-do';
 import { deleteToDo } from '../todo/delete-to-do';
+import {changeToDoStatus} from '../todo/change-to-do-status';
 
 export function createNewForm(pseudoEnum, project, todo) {
     
@@ -97,11 +98,11 @@ export function createNewForm(pseudoEnum, project, todo) {
                 manageTodosButton.textContent = "Manage Project's ToDos";
                 manageTodosButton.addEventListener('click', () => openManageTodosWindow(project));
             } else if (split[1] == "TODO") {
-                primaryButton.addEventListener('click',() => updateToDo(todo, project));
+                primaryButton.addEventListener('click',() => updateToDo(project, todo));
                 deleteButton.textContent = 'Delete ToDo';
                 deleteButton.addEventListener('click',() => deleteToDo(project, todo));
                 manageTodosButton.textContent = "Change status";
-                manageTodosButton.addEventListener('click', () => changeToDoStatus(todo, project));
+                manageTodosButton.addEventListener('click', () => changeToDoStatus(project, todo));
         }
     }
     }
